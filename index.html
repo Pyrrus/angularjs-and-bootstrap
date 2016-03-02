@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Page test</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/easy-autocomplete.themes.css">
+
+    <link rel="stylesheet" type="text/css" href="css/easy-autocomplete.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/edits.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/easy-autocomplete.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-sanitize.js"></script>
+
+
+</head>
+
+<body ng-app="mainApp">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 topImage">
+
+                <img src="images/header.jpg" class="img-responsive">
+
+                <div class="socal bottomright">
+                    <ul>
+                        <li class="text">Connect:</li>
+                        <li>
+                            <a href="#"><i class="fa fa-facebook-official fa-1x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter-square fa-1x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest-square fa-1x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-youtube-square fa-1x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-linkedin-square fa-1x"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="content col-centered">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel-body main top">
+                        <h1>The Ultimate Gamer</h1>
+                        <h2 style="font-size: 36px;font-weight: bold;color: crimson;">"Experience the passion of gaming"</h2>
+
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default addSpace">
+                        <div class="panel-body search">
+                            <p class="sFinder">Game Finder</p>
+
+                            <p class="lorem">Serach by states</p>
+
+                            <div>
+                                <form id="myform">
+                                    <div class="input-group">
+                                        <input class="form-control" style="wdith: 100%" placeholder="Search Events" id="search">
+                                        <span id="clicker" class="input-group-addon clicker"><img src="images/search.png"></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-app="mainApp">
+
+            <div class="column" ng-controller="quickController">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 style="font-weight: bold">
+                        Events
+                    </h2>
+                    </div>
+                    <div class="col-md-4 quickINFO" ng-repeat="quick in quick">
+                        <h3 style="font-weight: bold">{{quick.header}}</h3>
+                        <p>{{quick.info}}</p>
+                        <a href="{{quick.link}}" class="btn btn-default button hideINFO">Learn More <img class="space" src="images/arrow-btn-blue.png"></a>
+                        <a href="{{quick.link}}" class="btn btn-default button btn-block text-right showINFO">Learn More <img class="space text-left" src="images/arrow-btn-blue.png"></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="column" ng-controller="proController">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-left proOne" style="font-weight: bold">
+                                    Products
+                        </h2>
+
+                        <span class="proSelect">
+                             <span class="hideFind">Fitler by</span>
+                        <select id="show" ng-click="priceRangeFilter">
+                            <option value="0">All</option>
+                            <option value="1">Less Than $24.99</option>
+                            <option value="2">$25.00 to $49.99</option>
+                            <option value="3">$50.00 to $74.99</option>
+                            <option value="4">$75.00 or more</option>
+                        </select>
+                        </span>
+                    </div>
+
+
+                </div>
+
+                <div class="row" name="pro">
+                    <div class="col-md-3" ng-repeat="product in pro | filter:priceRangeFilter">
+
+                        <div class="panel proPanel">
+                            <div class="panel-body">
+
+                                <h3 ng-click="showINFO(product.order - 1)" class="proHeader clicker">{{product.title}}</h3>
+                                <p class="proCost">Starting at ${{product.price}}</p>
+                                <p class="proInfo">{{product.info}}</p>
+
+                                <img ng-click="showINFO(product.order - 1)" src="{{product.src}}" style="width:50%" class="img-responsive proImage clicker hideIMG">
+
+                                <div class="crop">
+                                    <img ng-click="showINFO(product.order - 1)" src="{{product.src}}" class="img-responsive proImage clicker">
+                                </div>
+
+                                <a ng-click="showINFO(product.order - 1)" class="btn button proLink LinkImage">Learn More <img class="space" src="images/arrow-btn-blue.png"></a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="column pINFO" ng-show="off">
+
+                    <div class="row">
+
+
+
+                        <div class="panel proPanel">
+                            <div class="panel-title">
+                                <a class="hideSize" href="" ng-click="remove()"><img style="margin-top: 20px; padding-right: 15px;" class="pull-right" src="images/close.png" /></a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-6">
+
+                                    <a class="showSize" href="" ng-click="remove()"><img style="margin-top: 6px;" class="pull-right" src="images/close.png" /></a>
+                                    <h3 class="proTitle">{{boxInfo.title}}</h3>
+                                    <h3 class="proCost">Starting at ${{boxInfo.price}}</h3>
+                                    <p class="proInfo" ng-bind-html="trustAsHtml(text)"></p>
+
+                                    <div class="order">
+                                        <a class="btn button hindINFO">Buy Online <img class="space" src="images/arrow-btn-white.png"></a>
+
+                                        <a href="#" class="btn button btn-block showINFO">Buy Online <img class="space" src="images/arrow-btn-white.png"></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <img src="{{boxInfo.src}}" class="img-responsive">
+                                    <span id="span" ng-if="cssImage">
+                                        <p ng-bind-html="trustAsHtml(cssImage)">
+                                        </p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+</div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">Close &times;</button>
+                    <h2 id="mHeader" class="modal-title">Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                    <p> Vivamus at rutrum est, eu pellentesque lacus. Curabitur imperdiet tortor sit amet enim ullamcorper, a aliquet odio rutrum.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/easy-autocomplete.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
